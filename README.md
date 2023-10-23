@@ -20,9 +20,9 @@ Provide a brief introduction to your project. Explain what it does, why it's use
 
 List the main features of your project. Describe what users can do with it and what sets it apart from similar projects. You can format this section as a bullet list.
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Blogging
+- Communities
+- Collaboration
 
 ## Getting Started
 
@@ -33,8 +33,7 @@ Provide instructions on how to set up and run your project on a local developmen
 List any software, tools, or dependencies that users need to have installed before they can run your project. Include version numbers where applicable.
 
 - Node.js (version x.x.x)
-- MongoDB (version x.x.x)
-- ...
+- MongoDB (version x.x.x) 
 
 ### Installation
 
@@ -42,3 +41,4 @@ List any software, tools, or dependencies that users need to have installed befo
 
    ```bash
    git clone https://github.com/yourusername/joddev.git
+   ```

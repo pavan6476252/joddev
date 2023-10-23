@@ -2,4 +2,4 @@ backend/serviceAccount
 backend/node_modules
 frontend/node_modules
 backend/src/config/serviceAccount
-frontend/src/config/firebase_config
+frontend/src/config/firebase_config.ts
