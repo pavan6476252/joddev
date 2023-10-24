@@ -18,17 +18,25 @@ app.use(cors())
 //import routes
 const userRoutes = require('./src/routes/users')
 const articlesRoutes = require('./src/routes/articles')
-const roomRoutes = require('./src/routes/rooms')
+const roomRoutes = require('./src/routes/rooms');
+const RoomSchema = require('./src/schema/roomSchema');
+const User = require('./src/schema/userSchema');
 
 // use routes
 
 app.use('/api/users', userRoutes);
 app.use('/api/articles', articlesRoutes);
-app.use('/api/room',roomRoutes)
+app.use('/api/room', roomRoutes)
 
 
 const server = createServer(app)
-const socketIO = new Server(server)
+const socketIO = new Server(server,
+    {
+        cors: {
+            origin: 'http://localhost:5173/',
+            methods: ['GET', 'POST'],
+        }
+    })
 
 
 //socket methods 
@@ -39,7 +47,6 @@ socketIO.on('connection', (socket) => {
         console.log('🔥: A user disconnected');
     });
 });
-
 
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);

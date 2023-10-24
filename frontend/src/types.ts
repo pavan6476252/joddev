@@ -1,14 +1,13 @@
 export type RoomResponse = {
-    createdAt: string;
-    ended: boolean;
-    participants: any[]; // You can specify the type for participants
-    public: boolean;
-    startTime: string;
-    subTitle: string;
-    thumbnail: string;
-    title: string;
-    uid: string;
-    __v: number;
-    _id: string;
-  };
-  
+  uid: string;
+  public: boolean;
+  title: string;
+  subTitle: string;
+  thumbnail: string;
+  startTime: string;
+  participants: any[]; // You can replace `any[]` with the actual type of participants.
+  ended: boolean;
+  _id: string;
+  createdAt: string;
+  __v: number;
+};

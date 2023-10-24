@@ -35,6 +35,7 @@ function LoginScreen() {
           <button onClick={logout}>logout</button>
           <div>
             {JSON.stringify(user.email)}
+            BEARER {localStorage.getItem('token')}
           </div>
         </div>
           : <div>

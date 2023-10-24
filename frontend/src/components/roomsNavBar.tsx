@@ -1,10 +1,17 @@
 // Navbar.tsx
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 interface props {
-  onchange: (value: string) => void
+  onchange: (value: string) => void,
+
 }
 const RoomsNavbar: React.FC<props> = (props) => {
+  const navigate = useNavigate()
+  const handleNavigation = (url: string) => {
+    navigate(url);
+  };
+
   return (
     <nav className="bg-[#333] py-4 px-4 flex justify-between items-center ">
       <h1 className="text-2xl font-bold text-[#FF5722]">Rooms</h1>
@@ -41,10 +48,15 @@ const RoomsNavbar: React.FC<props> = (props) => {
             </svg>
           </button>
         </div>
-        <button className="bg-[#FF5722] text-white py-2 px-4 rounded-full hover:bg-[#F44336]">
+        <button className="bg-[#FF5722] text-white py-2 px-4 rounded-full hover:bg-[#F44336]"
+          onClick={()=>handleNavigation('/rooms/join')}
+       
+        >
           Join Room
         </button>
-        <button className="bg-[#00BCD4] text-white py-2 px-4 rounded-full hover:bg-[#0097A7]">
+        <button className="bg-[#00BCD4] text-white py-2 px-4 rounded-full hover:bg-[#0097A7]"
+        onClick={()=>handleNavigation('/rooms/create')}
+        >
           Create Room
         </button>
       </div>

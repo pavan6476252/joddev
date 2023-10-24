@@ -1,33 +1,31 @@
-import { LoaderFunctionArgs, createBrowserRouter } from "react-router-dom";
-import App from "../App";
-import RoomsScr from "../screens/RoomsScr";
-import axios from "axios";
 
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
-        //   loader: ,
-        children: [
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import NotFound from '../screens/NotFound404';
+import RoomsScreen from '../screens/rooms/RoomScr';
+import JoinRoomsScr from '../screens/rooms/JoinRoomsScr';
+import CreateRoomScr from '../screens/rooms/CreateRoomScr';
+import ViewRoomScr from '../screens/rooms/ViewRoomScr';
+import App from '../App';
 
-        ],
+function AppRoutes() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={<App />} />
+                <Route path="/rooms/*">
+                    <Route index element={<RoomsScreen />} />
+                    <Route path="join" element={<JoinRoomsScr />} />
+                    <Route path="create" element={<CreateRoomScr />} />
+                    <Route path="view/:id" element={<ViewRoomScr />} />
 
-    },
-    {
-        path: '/rooms',
-        element: <RoomsScr />,
-        loader: async ({ request, params }) => {
-            const myRoomsURL = `http://localhost:3000/api/room/findall/${'ssVpUrffmCYR2xB8gsVf9JaqyBm2'}`;
-            const allRoomsURL = `http://localhost:3000/api/room/findall/`;
-            const myRooms = await axios.get(myRoomsURL);
-            const allRooms = await axios.get(allRoomsURL);
-            // console.log(data)
+                </Route>
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
+    );
 
-            return { myRooms: myRooms.data, allRooms: allRooms.data };
-        },
-    }
+}
 
-]);
-
-export default router;
+export default AppRoutes
