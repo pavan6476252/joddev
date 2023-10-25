@@ -8,6 +8,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AppRoutes />
     {/* <App /> */}
-    rPr
+ 
   </React.StrictMode>,
 )

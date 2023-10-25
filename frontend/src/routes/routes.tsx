@@ -8,6 +8,11 @@ import JoinRoomsScr from '../screens/rooms/JoinRoomsScr';
 import CreateRoomScr from '../screens/rooms/CreateRoomScr';
 import ViewRoomScr from '../screens/rooms/ViewRoomScr';
 import App from '../App';
+import BlogHomeScreen from '../screens/blog/BlogHomeScreen';
+import EditBlogScreen from '../screens/blog/EditBlogScreen';
+import PostBlogScreen from '../screens/blog/PostBlogScreen';
+import SearchBlogsScreen from '../screens/blog/SearchBlogsScreen';
+import ViewBlogScreen from '../screens/blog/ViewBlogScreen';
 
 function AppRoutes() {
     return (
@@ -21,6 +26,17 @@ function AppRoutes() {
                     <Route path="view/:id" element={<ViewRoomScr />} />
 
                 </Route>
+
+
+                <Route path='/blog/*'>
+                    <Route index element={<BlogHomeScreen />} />
+                    <Route path="post" element={<PostBlogScreen />} />
+                    <Route path="edit/:id" element={<EditBlogScreen />} />
+                    <Route path="search" element={<SearchBlogsScreen />} />
+                    <Route path="view/:id" element={<ViewBlogScreen />} />
+                </Route>
+
+
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
