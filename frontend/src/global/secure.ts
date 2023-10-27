@@ -14,9 +14,10 @@ function getItem(key: string) {
         return null;
     }
 }
-function removeItem(key: string) {
+async function removeItem(key: string) {
     try {
-        localStorage.removeItem(key);
+        await localStorage.removeItem(key);
+        console.log("item removed")
     } catch (e) {
         console.error('Error removing data from local storage:', e);
     }

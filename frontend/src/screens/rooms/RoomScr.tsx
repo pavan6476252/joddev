@@ -1,10 +1,7 @@
 // RoomsScr.tsx
 
 import React, { useState } from 'react';
-import RoomsNavbar from '../../components/roomsNavBar';
-import RoomCard from '../../components/RoomCard';
 import { useLoaderData } from 'react-router-dom';
-import JoinRoomModel from '../../components/JoinRoomModel';
  
 const RoomsScr: React.FC= () => {
     // const roomData = useLoaderData() as
@@ -28,8 +25,6 @@ const RoomsScr: React.FC= () => {
     return (
         <div className="bg-[#F5F5F5] min-h-screen">
 
-            <RoomsNavbar onchange={setSearchValue} />
- 
             {/* <div className="container   px-4  py-6">
                 <h1 className="text-2xl font-bold mb-4">My Rooms</h1>
                 <div className="grid 

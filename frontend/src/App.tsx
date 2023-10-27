@@ -3,14 +3,17 @@
 import { useEffect } from "react";
 import authStore from "./global/global";
 import { GoogleAuthProvider } from "@firebase/auth";
+import React from "react";
+import { GlobalNavbar } from "./components/GlobalNavBar";
 
 export default function App() {
 
   return (
-    <header>
+    <body className="w-screen">
       {/* <NavBar /> */}
+      <GlobalNavbar />
       <LoginScreen />
-    </header>
+    </body>
   )
 }
 
@@ -26,17 +29,18 @@ function LoginScreen() {
     signInWithGoogle();
   };
 
+  console.log("user ", user)
   return (
-    <div>
+    <div className="w-full">
 
       {
         user ? <div>
           <h1>logout</h1>
           <button onClick={logout}>logout</button>
-          <div>
+          <p className="overflow-clip">
             {JSON.stringify(user.email)}
             BEARER {localStorage.getItem('token')}
-          </div>
+          </p>
         </div>
           : <div>
             <h1>Login</h1>

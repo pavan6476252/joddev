@@ -10,7 +10,7 @@ import {
 import secure from '../global/secure';
 import api from './api';
 
-import firebaseApp from '../config/firebase_config'; 
+import firebaseApp from '../config/firebase_config';
 
 interface JodUser {
     uid: string;
@@ -33,12 +33,13 @@ const authStore = create<AuthState>((set) => ({
     auth: getAuth(firebaseApp),
     user: null,
     init: async () => {
-        const user= await secure.getItem('user') ;
+        const user = await secure.getItem('user');
+        console.log("init ", user)
         if (user) {
             console.log("this")
             set({ user: user });
 
-        }else{
+        } else {
             // try {
             //     const tkn = await authStore.getState().auth.currentUser?.getIdToken();
             //     console.log("hello ",tkn)
@@ -50,12 +51,12 @@ const authStore = create<AuthState>((set) => ({
             //         });
             //         // console.log('init profile', data);
             //         set({ user: data });
-                    
+
             //     }
             // } catch (e) {
             //     console.error('Auth init error:', e);
             // }
-        console.log("init :",'no user data found')
+            console.log("init :", 'no user data found')
         }
     },
     signInWithGoogle: async () => {
@@ -81,11 +82,10 @@ const authStore = create<AuthState>((set) => ({
     },
     logout: async () => {
         try {
-            const user = authStore.getState().auth.currentUser;
-            if (user) {
-                secure.removeItem(`user`);
-                secure.removeItem(`token`);
-            }
+
+            secure.removeItem(`user`);
+            secure.removeItem(`token`);
+
             await signOut(authStore.getState().auth);
             set({ user: null });
             console.log('Signout done ✅');
