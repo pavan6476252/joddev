@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import authStore from '../../global/global'
-import { Button, Checkbox, Dialog, DialogBody, Input, Card, Typography, Spinner } from '@material-tailwind/react';
+import { Button, Checkbox, Dialog, DialogBody, Input, Card, Typography, Spinner, Alert } from '@material-tailwind/react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import CustomButton from '../../components/CustomButton';
+import CaptureConfig from './captureConfig';
 
 function MeetScreen() {
     const navigate = useNavigate()
@@ -37,7 +39,7 @@ function MeetScreen() {
                     <Typography color="gray" className="mt-1 font-normal">
                         Nice to meet you! Enter your details to continue.
                     </Typography>
-                    <form className="mt-8 mb-2   ">
+                    <div className="mt-8 mb-2   ">
                         <div className="mb-1 flex flex-col gap-6">
                             <Typography variant="h6" color="blue-gray" className="-mb-3">
                                 Meet title
@@ -82,24 +84,41 @@ function MeetScreen() {
                             }
                             containerProps={{ className: "-ml-2.5" }}
                         />
-                        <Button onClick={() => setLoading(s => !s)} className="mt-6 flex justify-center items-center normal-case " fullWidth>
+
+                        <CustomButton
+                            onClick={() => setLoading(s => !s)} className="
+                     bg-black w-full
+                     mt-6 flex justify-center items-center normal-case " >
                             {loading ? <>
                                 <Spinner className='h-5 mr-4 text-lg' /> <p>Creating room...</p>
                             </>
                                 : " create now"}
-                        </Button>
+                        </CustomButton>
 
-                    </form>
+                    </div>
                     {/* </Card> */}
                 </DialogBody>
             </Dialog>
             {
 
-                user ? <div className=' container w-full h-screen flex items-center justify-center flex-col'>
+                user ? <div className=' container w-full h-screen
+                content-center place-items-center
+                grid grid-cols-2 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2'>
+                    <div className='w-full h-full'>
+                     <CaptureConfig/>
+                    </div>
+                    <div className='flex flex-col '>
 
+                        <CustomButton
+                            className='bg-black ' onClick={toggleDialogue}>Create Meet a Now</CustomButton>
+                        <CustomButton
+                            className='mt-3 ' onClick={() => prompt("Enter meeting id")}>
+                            <p className='text-black'>
+                                Join Meet a Now
+                            </p>
+                        </CustomButton>
 
-                    <Button onClick={toggleDialogue}>Create Meet a Now</Button>
-
+                    </div>
                 </div> : <div className='h-screen w-full flex justify-center items-center text-center'>
                     <Typography className='font-semibold text-2xl'>
                         Redirecting to authentication screen...
