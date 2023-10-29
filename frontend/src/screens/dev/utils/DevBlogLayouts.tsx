@@ -30,7 +30,7 @@ export default function DevLayout() {
 
                         <Typography
 
-                            variant='h4' >LATEST BLOG POSTS</Typography>
+                            variant='h4' >Latest posts</Typography>
                         <Button
                             variant="outlined"
                             className='  '>View more</Button>

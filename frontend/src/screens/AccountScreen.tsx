@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import authStore from '../global/global'
-import { Dialog, DialogBody, Tab, TabPanel, Tabs, TabsBody, tabsBody, TabsHeader, Button, Input, Textarea, Typography, IconButton, List, ListItemSuffix, Switch, ListItem } from '@material-tailwind/react';
+import { Dialog, DialogBody, Tab, TabPanel, Tabs, TabsBody, tabsBody, TabsHeader, Button, Input, Textarea, Typography, IconButton, List, ListItemSuffix, Switch, ListItem, Alert } from '@material-tailwind/react';
 import { GlobalNavbar } from '../components/GlobalNavBar';
 import Footer from '../components/Footer'
 
@@ -35,6 +35,11 @@ function LoginScreen() {
 
     // console.log("user ", user)
     const tabData = [
+        {
+            label: "Posts",
+            value: "posts",
+            element: <Posts />
+        },
         {
             label: "Profile",
             value: "profile",
@@ -103,6 +108,15 @@ function LoginScreen() {
 export default AccountScreen
 
 
+function Posts(){
+    return <div>
+        <div className="container ">
+            <Alert>
+                <p>no posts to display</p>
+            </Alert>
+        </div>
+    </div>
+}
 
 function Other() {
     const data = [
@@ -128,7 +142,7 @@ function Other() {
     return (
         <div>
 
-            <List>
+            <List >
                 {
                     data.map(data =>
                         <ListItem className="my-2 px-4 border border-gray-300">

@@ -3,10 +3,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import NotFound from '../screens/NotFound404';
-import RoomsScreen from '../screens/rooms/RoomScr';
-import JoinRoomsScr from '../screens/rooms/JoinRoomsScr';
-import CreateRoomScr from '../screens/rooms/CreateRoomScr';
-import ViewRoomScr from '../screens/rooms/ViewRoomScr';
 import App from '../App';
 import DevScreen from '../screens/dev/DevScreen';
 import { DevCategories } from './paths';
@@ -18,6 +14,8 @@ import ProgressBar from '../lib/ProgressBar';
 import AuthenticationScreen from '../screens/AuthenticationScreen';
 import authStore from '../global/global';
 import AccountScreen from '../screens/AccountScreen';
+import MeetScreen from '../screens/meet/MeetScreen';
+import MeetViewScreen from '../screens/meet/MeetViewScreen';
 
 function AppRoutes() {
     
@@ -34,6 +32,8 @@ function AppRoutes() {
 
                         <Route index element={<App />} />
                         <Route path='/authenticate' element={<AuthenticationScreen />} />
+                        <Route path='/meet' element={<MeetScreen/>}/>
+                        <Route path='/meet/:id' element={<MeetViewScreen/>}/>
                         <Route path="dev">
 
                             <Route index element={<DevScreen />} />
@@ -49,13 +49,8 @@ function AppRoutes() {
                         </Route>
                     </Route>
 
-                    <Route path="/rooms/*">
-                        <Route index element={<RoomsScreen />} />
-                        <Route path="join" element={<JoinRoomsScr />} />
-                        <Route path="create" element={<CreateRoomScr />} />
-                        <Route path="view/:id" element={<ViewRoomScr />} />
 
-                    </Route>
+                   
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>

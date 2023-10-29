@@ -27,7 +27,7 @@ import React from "react";
           <Typography variant="h6" color="blue-gray">
             UI/UX Review Check
           </Typography>
-          <Typography variant="lead" color="gray" className="mt-3 font-normal text-md">
+          <Typography variant="lead" color="gray" className="mt-3 font-normal text-sm">
             Because it&apos;s about motivating the doers. Because I&apos;m here to
             follow my dreams and inspire others.
           </Typography>
