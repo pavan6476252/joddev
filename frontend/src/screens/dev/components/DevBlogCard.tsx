@@ -23,16 +23,16 @@ import React from "react";
             alt="ui/ux review check"
           />
         </CardHeader>
-        <CardBody>
-          <Typography variant="h4" color="blue-gray">
+        <CardBody className="py-2">
+          <Typography variant="h6" color="blue-gray">
             UI/UX Review Check
           </Typography>
-          <Typography variant="lead" color="gray" className="mt-3 font-normal">
+          <Typography variant="lead" color="gray" className="mt-3 font-normal text-md">
             Because it&apos;s about motivating the doers. Because I&apos;m here to
             follow my dreams and inspire others.
           </Typography>
         </CardBody>
-        <CardFooter className="flex items-center justify-between">
+        <CardFooter className="flex items-center justify-between  py-2">
           <div className="flex items-center -space-x-3">
             <Tooltip content="Natali Craig">
               <Avatar

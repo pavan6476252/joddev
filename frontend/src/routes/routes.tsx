@@ -15,16 +15,25 @@ import { Button, Typography } from '@material-tailwind/react';
 import { DevBlogCard } from '../screens/dev/components/DevBlogCard';
 import DevLayout from '../screens/dev/utils/DevBlogLayouts';
 import ProgressBar from '../lib/ProgressBar';
+import AuthenticationScreen from '../screens/AuthenticationScreen';
+import authStore from '../global/global';
+import AccountScreen from '../screens/AccountScreen';
 
 function AppRoutes() {
+    
+    const init= authStore(state=>state.init)
+
     return (
         <>
             <ProgressBar />
             <BrowserRouter>
                 <Routes>
                     <Route path='/' >
-                        <Route index element={<App />} />
+                        <Route path='/account'
+                        element={<AccountScreen/>}/>
 
+                        <Route index element={<App />} />
+                        <Route path='/authenticate' element={<AuthenticationScreen />} />
                         <Route path="dev">
 
                             <Route index element={<DevScreen />} />

@@ -17,11 +17,12 @@ import CheckList from "@editorjs/checklist";
 import Delimiter from "@editorjs/delimiter";
 import InlineCode from "@editorjs/inline-code";
 import SimpleImage from "@editorjs/simple-image";
-import { Button, Chip, IconButton, Input, MenuItem, Select, Textarea, Typography, select, Option } from '@material-tailwind/react'; 
+import { Button, Chip, IconButton, Input, MenuItem, Select, Textarea, Typography, select, Option, Dialog, DialogBody, DialogHeader } from '@material-tailwind/react';
 import authStore from '../../global/global';
 import { DevCategories } from '../../routes/paths';
 import Footer from '../../components/Footer';
 import { GlobalNavbar } from '../../components/GlobalNavBar';
+import { Link, useLocation } from 'react-router-dom';
 
 const EDITOR_JS_TOOLS = {
   embed: Embed,
@@ -53,6 +54,7 @@ function CreateDevPost() {
   const [ready, setReady] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [keywords, setKeywords] = useState<string[]>();
+  const location = useLocation()
 
   useEffect(() => {
     if (!ejInstance.current) {
@@ -107,8 +109,17 @@ function CreateDevPost() {
     <div>
       <div className='z-50'>
 
-      <GlobalNavbar />
+        <GlobalNavbar />
       </div>
+      <Dialog open={user ? false : true} handler={() => { }} >
+        <DialogBody className='flex justify-center text-center'>
+          <h1>Please login to continue</h1>
+          <Link to={'/authenticate'}
+            state={{ next: location.pathname }}
+          >Login</Link>
+        </DialogBody>
+      </Dialog>
+
 
       {/* <div className=" container  p-10 ">
 
@@ -117,13 +128,13 @@ function CreateDevPost() {
         </div>
       </div> */}
       {
-        user ? <></> :
+        true ? <></> :
           <div className="z-10  absolute top-20 left-0 w-full h-full flex items-center justify-center  ">
 
             <div className={false ? " " : "h-1/2  w-1/2 max-w-screen-2xl mx-auto bg-pink-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-30 border border-gray-100 flex items-center justify-center"} >
-              
-               Login To continue
-              
+
+              Login To continue
+
             </div>
 
 

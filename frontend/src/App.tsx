@@ -5,9 +5,10 @@ import authStore from "./global/global";
 import { GoogleAuthProvider } from "@firebase/auth";
 import React from "react";
 import { GlobalNavbar } from "./components/GlobalNavBar";
+import { useFetcher } from "react-router-dom";
 
 export default function App() {
-
+  
   return (
     <body className="w-screen">
       {/* <NavBar /> */}
@@ -19,11 +20,11 @@ export default function App() {
 
 
 function LoginScreen() {
-  useEffect(() => {
-    init()
-  }, [])
+  // useEffect(() => {
+  //   // init()
+  // }, [])
 
-  const { signInWithGoogle, user, logout, init } = authStore();
+  const { signInWithGoogle, user, logout } = authStore();
 
   const handleGoogleLogin = () => {
     signInWithGoogle();

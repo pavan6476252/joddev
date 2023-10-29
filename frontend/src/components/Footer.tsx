@@ -9,7 +9,7 @@ function Footer() {
                     variant="small"
                     className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0"
                 >
-                    &copy; {'2023'} <a href="https://material-tailwind.com/">Jod Dev</a>. All
+                    &copy; {'2023'} <a href="https://pavankumar.vercel.app/">Jod Dev</a>. All
                     Rights Reserved.
                 </Typography>
                 <div className="flex gap-4 text-blue-gray-900 sm:justify-center">

@@ -11,7 +11,7 @@ import {
     MenuList,
     MenuItem,
 } from "@material-tailwind/react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
 import { PopUpLogin } from "./PopUpLogin";
 import authStore from "../global/global";
 
@@ -21,7 +21,7 @@ export function GlobalNavbar() {
     const user = authStore(state => state.user)
     const logout = authStore(state => state.logout)
     const signInWithGoogle = authStore(state => state.signInWithGoogle)
-    const init = authStore(state=>state.init);
+    const init = authStore(state => state.init);
     const location = useLocation();
 
     React.useEffect(() => {
@@ -42,7 +42,7 @@ export function GlobalNavbar() {
                 as="li"
                 variant="small"
                 color="blue-gray"
-                className={location.pathname.includes('/dev') ?"p-1 font-normal underline underline-offset-2": "p-1 font-normal"}
+                className={location.pathname.includes('/dev') ? "p-1 font-normal underline underline-offset-2" : "p-1 font-normal"}
             >
                 <a href="/dev" className="flex items-center">
                     Dev
@@ -59,12 +59,13 @@ export function GlobalNavbar() {
                 </a>
             </Typography>
             {
-                location.pathname.includes('/dev')  && user?
+                location.pathname.includes('/dev/') &&
+                    !location.pathname.includes('/dev/create-post') && user ?
 
                     <Button
-                       size="sm"
+                        size="sm"
                     >
-                        <a href="/dev" className="flex items-center">
+                        <a href="/dev/create-post" className="flex items-center">
                             Create Post
                         </a>
                     </Button> : <></>
@@ -93,7 +94,9 @@ export function GlobalNavbar() {
                 <MenuList>
                     <MenuItem><p>{user?.name}</p></MenuItem>
                     <MenuItem><p>{user?.email}</p></MenuItem>
-                    <MenuItem><p>Account</p></MenuItem>
+                    <Link to={'/account'}>
+                        <MenuItem>Account</MenuItem>
+                    </Link>
                     <MenuItem><p onClick={logout}>Logout</p></MenuItem>
                 </MenuList>
 
@@ -108,7 +111,7 @@ export function GlobalNavbar() {
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Typography
                         as="a"
-                        href="#"
+                        href="/"
                         className="mr-4 cursor-pointer py-1.5 font-medium"
                     >
                         Jod Dev
@@ -130,9 +133,9 @@ export function GlobalNavbar() {
                                     onClick={handleOpen}
                                     variant="gradient"
                                     size="sm"
-                                    className="hidden lg:inline-block text-"
+                                    className="hidden lg:inline-block "
                                 >
-                                    <span>Authenticate</span>
+                                    <span className="text-white ">Authenticate</span>
                                 </Button>
                             </div>
                         }
