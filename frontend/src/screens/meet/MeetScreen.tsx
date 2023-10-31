@@ -4,6 +4,7 @@ import { Button, Checkbox, Dialog, DialogBody, Input, Card, Typography, Spinner,
 import { useLocation, useNavigate } from 'react-router-dom';
 import CustomButton from '../../components/CustomButton';
 import CaptureConfig from './captureConfig';
+import { GlobalNavbar } from '../../components/GlobalNavBar';
 
 function MeetScreen() {
     const navigate = useNavigate()
@@ -30,6 +31,7 @@ function MeetScreen() {
     }
     return (
         <body>
+            <GlobalNavbar/>
             <Dialog open={showDialogue} handler={() => toggleDialogue()}>
                 <DialogBody>
                     {/* <Card color="transparent" shadow={false}> */}
@@ -101,13 +103,13 @@ function MeetScreen() {
             </Dialog>
             {
 
-                user ? <div className=' container w-full h-screen
+                user ? <div className=' container w-full
                 content-center place-items-center
                 grid grid-cols-2 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2'>
-                    <div className='w-full h-full'>
+                    <div className='w-full'>
                      <CaptureConfig/>
                     </div>
-                    <div className='flex flex-col '>
+                    <div className='flex flex-col md:flex-row md:mt-4 '>
 
                         <CustomButton
                             className='bg-black ' onClick={toggleDialogue}>Create Meet a Now</CustomButton>

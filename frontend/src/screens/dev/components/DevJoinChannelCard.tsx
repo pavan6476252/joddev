@@ -24,11 +24,9 @@ export function DevJoinChannelCard() {
     <>
        
       <Alert
-        
         className=""
         icon={<Icon />}
-       
-      >
+        >
         <Typography variant="h5" color="white">
           Join dev Channel now
         </Typography>

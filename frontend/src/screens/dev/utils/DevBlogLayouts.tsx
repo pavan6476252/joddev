@@ -6,7 +6,7 @@ import { GlobalNavbar } from "../../../components/GlobalNavBar"
 import { DevMustCheckBlogCard } from "../components/DevMustCheckBlogCard"
 import { DevJoinChannelCard } from "../components/DevJoinChannelCard"
 import Footer from "../../../components/Footer"
-
+import PreRequestingAlert from '../components/PreRequestingAlert'
 export default function DevLayout() {
     const location = useLocation()
 
@@ -21,10 +21,13 @@ export default function DevLayout() {
                 <GlobalNavbar />
 
             </div>
+
             <div className='container'>
+
                 {/* blogs section  */}
 
                 <div className='flex flex-col mt-8 '>
+                    <PreRequestingAlert />
 
                     <div className='mb-4  flex items-center justify-between'>
 

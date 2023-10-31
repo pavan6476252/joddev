@@ -16,6 +16,7 @@ import authStore from '../global/global';
 import AccountScreen from '../screens/AccountScreen';
 import MeetScreen from '../screens/meet/MeetScreen';
 import MeetViewScreen from '../screens/meet/MeetViewScreen';
+import MusicHome from '../screens/music/MusicHome';
 
 function AppRoutes() {
     
@@ -29,6 +30,8 @@ function AppRoutes() {
                     <Route path='/' >
                         <Route path='/account'
                         element={<AccountScreen/>}/>
+                        <Route path='/music'
+                        element={<MusicHome/>}/>
 
                         <Route index element={<App />} />
                         <Route path='/authenticate' element={<AuthenticationScreen />} />

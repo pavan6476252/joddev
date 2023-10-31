@@ -39,24 +39,23 @@ export function GlobalNavbar() {
 
 
             <Typography
-                as="li"
+                as="a"
+                href="/dev"
                 variant="small"
                 color="blue-gray"
                 className={location.pathname.includes('/dev') ? "p-1 font-normal underline underline-offset-2" : "p-1 font-normal"}
             >
-                <a href="/dev" className="flex items-center">
-                    Dev
-                </a>
+                Dev
+               
             </Typography>
             <Typography
-                as="li"
+                as="a"
+                href=""
                 variant="small"
                 color="blue-gray"
-                className="p-1 font-normal hover:underline-offset-4 hover:underline"
+                className={"p-1 font-normal hover:underline-offset-4 hover:underline" + location.pathname.includes('meet') ? "underline text-gray-500" : ""}
             >
-                <a href="#" className="flex items-center">
-                    R/D maps
-                </a>
+                Meet
             </Typography>
             {
                 location.pathname.includes('/dev/') &&
@@ -110,16 +109,14 @@ export function GlobalNavbar() {
             <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-3">
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Typography
-                        as="p"
-                        // href="/"
+                        as="a"
+                        href="/"
                         className="mr-4 cursor-pointer py-1.5 font-medium"
-                    >
-                      <a href="">
-                        
-                          Jod Dev
-                        </a>
+                    > 
+
+                            Jod Dev
                     </Typography>
-                    
+
                     <div className="flex items-center gap-4">
                         <div className="mr-4 hidden lg:block">{navList}</div>
 

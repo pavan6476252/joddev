@@ -5,6 +5,7 @@ const articleSchema = new mongoose.Schema({
     content: String,
     author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     claps: Number,
+    category: [{ type: String, required: true }],
     createdAt: { type: Date, default: Date.now },
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
 });
@@ -12,4 +13,4 @@ const articleSchema = new mongoose.Schema({
 const Article = mongoose.model('Article', articleSchema);
 
 
-module.exports =  Article;
+module.exports = Article;

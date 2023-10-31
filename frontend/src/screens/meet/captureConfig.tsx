@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import CustomButton from '../../components/CustomButton';
-import { Button, IconButton } from '@material-tailwind/react';
+import { Button, IconButton, Typography } from '@material-tailwind/react';
 
 const gdmOptions = {
   video: true,
@@ -42,9 +42,18 @@ function CaptureConfig() {
   };
 
   return (
-    <div>
+    <div className='my-2 relative'>
       <video className='w-full bg-blue-gray-600 h-full border border-black rounded-lg ' ref={videoRef} autoPlay></video>
+      {
+        videoRef.current ?
+          <></> :
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+           <Typography className='text-lg text-white font-bold tracking-widest'>Test Capturing..</Typography>
+          </div>
+      }
+
       <div className="mt-3 flex justify-between">
+
         <div>
           <CustomButton className='bg-black' onClick={startCapture}>Start Capture</CustomButton>
           <CustomButton className='bg-red-300' onClick={stopCapture}>Stop Capture</CustomButton>

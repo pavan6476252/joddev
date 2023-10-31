@@ -10,7 +10,7 @@ router.use(isAuthenticated);
 
 // Create an article
 router.post('/', isAuthenticated, async (req, res) => {
-  const { title, content } = req.body;
+  const { title, content ,category} = req.body;
    
   try {
     // Check if the user exists in MongoDB
@@ -24,6 +24,7 @@ router.post('/', isAuthenticated, async (req, res) => {
     const newArticle = new Article({
       title: title,
       content: content,
+      category:category,
       author: existingUser._id,
       claps: 0,
       comments: [],

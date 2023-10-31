@@ -1,6 +1,10 @@
 require('./src/config/firebase_config')
 require('./src/config/mongodb_config')
 const express = require('express')
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+
 const bodyParser = require('body-parser');
 const cors = require('cors')
 const { createServer } = require('http')
@@ -22,11 +26,13 @@ const roomRoutes = require('./src/routes/rooms');
 const RoomSchema = require('./src/schema/roomSchema');
 const User = require('./src/schema/userSchema');
 
+
+
 // use routes
 
 app.use('/api/users', userRoutes);
 app.use('/api/articles', articlesRoutes);
-app.use('/api/room', roomRoutes)
+app.use('/api/room', roomRoutes);
 
 
 const server = createServer(app)
@@ -39,7 +45,33 @@ const socketIO = new Server(server,
     })
 
 
-//socket methods 
+
+
+// Define the storage for uploaded files
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './uploads');  
+    },
+    filename: (req, file, cb) => {
+        const extArray = file.mimetype.split('/');
+        const extension = extArray[extArray.length - 1];
+        cb(null, `${file.fieldname}-${Date.now()}.${extension}`);
+    },
+});
+
+const upload = multer({ storage: storage });
+
+// Serve static files from the 'uploads' directory
+app.use('/static', express.static(path.resolve('./uploads')));
+
+// Routes
+app.post('/upload', upload.single('image'), (req, res) => {
+    if (req.file) {
+        return res.json({ ok: "okay", file: req.file.filename });
+    }
+    return res.json({ failed: "fail" });
+});
+
 //Add this before the app.get() block
 socketIO.on('connection', (socket) => {
     console.log(`⚡: ${socket.id} user just connected!`);
@@ -47,8 +79,10 @@ socketIO.on('connection', (socket) => {
         console.log('🔥: A user disconnected');
     });
 
-    
+
 });
+
+/// 
 
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
