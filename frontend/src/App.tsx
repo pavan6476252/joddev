@@ -6,14 +6,15 @@ import { GoogleAuthProvider } from "@firebase/auth";
 import React from "react";
 import { GlobalNavbar } from "./components/GlobalNavBar";
 import { useFetcher } from "react-router-dom";
+import HomePage from "./screens/home/HomePage";
 
 export default function App() {
-  
+
   return (
     <body className="w-screen">
       {/* <NavBar /> */}
-      <GlobalNavbar />
-      <LoginScreen />
+      {/* <GlobalNavbar />
+      <LoginScreen /> */}
     </body>
   )
 }

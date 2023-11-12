@@ -23,6 +23,7 @@ app.use(cors())
 const userRoutes = require('./src/routes/users')
 const articlesRoutes = require('./src/routes/articles')
 const roomRoutes = require('./src/routes/rooms');
+const fileUploadRoutes = require('./src/routes/fileupload')
 const RoomSchema = require('./src/schema/roomSchema');
 const User = require('./src/schema/userSchema');
 
@@ -33,6 +34,8 @@ const User = require('./src/schema/userSchema');
 app.use('/api/users', userRoutes);
 app.use('/api/articles', articlesRoutes);
 app.use('/api/room', roomRoutes);
+app.use('/', fileUploadRoutes);
+
 
 
 const server = createServer(app)
@@ -50,7 +53,7 @@ const socketIO = new Server(server,
 // Define the storage for uploaded files
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './uploads');  
+        cb(null, './uploads');
     },
     filename: (req, file, cb) => {
         const extArray = file.mimetype.split('/');
@@ -64,13 +67,7 @@ const upload = multer({ storage: storage });
 // Serve static files from the 'uploads' directory
 app.use('/static', express.static(path.resolve('./uploads')));
 
-// Routes
-app.post('/upload', upload.single('image'), (req, res) => {
-    if (req.file) {
-        return res.json({ ok: "okay", file: req.file.filename });
-    }
-    return res.json({ failed: "fail" });
-});
+
 
 //Add this before the app.get() block
 socketIO.on('connection', (socket) => {

@@ -46,7 +46,7 @@ export function GlobalNavbar() {
                 className={location.pathname.includes('/dev') ? "p-1 font-normal underline underline-offset-2" : "p-1 font-normal"}
             >
                 Dev
-               
+
             </Typography>
             <Typography
                 as="a"
@@ -61,7 +61,7 @@ export function GlobalNavbar() {
                 location.pathname.includes('/dev/') &&
                     !location.pathname.includes('/dev/create-post') && user ?
 
-                    <Button
+                    <Button 
                         size="sm"
                     >
                         <a href="/dev/create-post" className="flex items-center">
@@ -112,9 +112,9 @@ export function GlobalNavbar() {
                         as="a"
                         href="/"
                         className="mr-4 cursor-pointer py-1.5 font-medium"
-                    > 
+                    >
 
-                            Jod Dev
+                        Jod Dev
                     </Typography>
 
                     <div className="flex items-center gap-4">
