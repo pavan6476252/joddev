@@ -13,6 +13,7 @@ function RoomieNavbar() {
                 </span>
                 <input type="search" name="" id="" className='text-lg text-gray-400 bg-transparent items-center focus:border-none outline-none active:border-none w-full ' placeholder='Search...' />
             </div>
+            
 
             <div className='flex gap-4'>
                 <div className=' bg-gray-700 p-4 flex items-center rounded-full w-min'>
