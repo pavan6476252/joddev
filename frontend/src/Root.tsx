@@ -25,8 +25,11 @@ import { useEffect } from 'react';
 import { auth } from './config/firebase_config';
 import { useDispatch, useSelector } from 'react-redux'
 import { removeUser, saveUser } from './store/auth/authSlice';
-import { useAppDispatch } from './store/hooks';
+import { useAppDispatch, useAppSelector } from './store/hooks';
 import { AuthState } from './store/auth/models';
+import RoomieProfilePage from './features/roomie/components/profile/RoomieProfilePage';
+import CreateRoom from './features/roomie/components/room/CreateRoomPage';
+import CreateRoomPage from './features/roomie/components/room/CreateRoomPage';
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" >
     <Route index element={<App />} />
@@ -49,7 +52,12 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/intro' element={<IntroPage />} />
 
     {/* // roomie  */}
-    <Route path='/roomie' element={<RoomieHomePage />} />
+    <Route path='roomie'>
+      <Route index element={<RoomieHomePage />} />
+      <Route path='profile' element={<RoomieProfilePage />} />
+      <Route path='create-room' element={<CreateRoomPage />} />
+
+    </Route>
 
   </Route >
 ))
@@ -58,19 +66,23 @@ const router = createBrowserRouter(createRoutesFromElements(
 
 
 function Root() {
+  const authState = useAppSelector(state => state.auth)
   const dispatch = useAppDispatch()
   useEffect(() => {
     const listenAuth = onAuthStateChanged(auth, (user) => {
       if (user !== null) {
-        // Example usage
+
         user.getIdToken().then((tkn) => {
           const authstate: AuthState = {
+            ...authState,
             authenticated: true,
             displayName: user.displayName,
             email: user.email,
             photoURL: user.photoURL,
             uid: user.uid,
-            token: tkn
+            token: tkn,
+
+
 
           }
           console.log("user state change");

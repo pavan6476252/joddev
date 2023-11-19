@@ -21,20 +21,15 @@ app.use(cors())
 
 //import routes
 const userRoutes = require('./src/routes/users')
-const articlesRoutes = require('./src/routes/articles')
-const roomRoutes = require('./src/routes/rooms');
-const fileUploadRoutes = require('./src/routes/fileupload')
-const RoomSchema = require('./src/schema/roomSchema');
-const User = require('./src/schema/userSchema');
-
-
+const articlesRoutes = require('./src/routes/articles') 
+const roomieRoutes = require('./src/routes/roomie')
 
 // use routes
 
 app.use('/api/users', userRoutes);
-app.use('/api/articles', articlesRoutes);
-app.use('/api/room', roomRoutes);
-app.use('/', fileUploadRoutes);
+app.use('/api/articles', articlesRoutes); 
+app.use('/api/roomie', roomieRoutes); 
+
 
 
 

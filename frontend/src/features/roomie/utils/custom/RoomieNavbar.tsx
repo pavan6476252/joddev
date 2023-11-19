@@ -1,40 +1,83 @@
-import React from 'react'
-import { BiMessageAltMinus, BiSearch } from 'react-icons/bi'
-import { IoMdNotificationsOutline } from 'react-icons/io'
+import { BiMessageAltMinus, BiSearch } from 'react-icons/bi';
+import { IoMdNotificationsOutline } from 'react-icons/io';
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { Link, useLocation } from 'react-router-dom';
+import { logout } from '../../../../store/auth/authSlice';
 
 function RoomieNavbar() {
-    return (
-        <div className='mx-2  flex justify-between '>
+    const user = useAppSelector((state) => state.auth);
+    const disatch = useAppDispatch()
 
-            <div className=' bg-gray-700 w-full 
-            max-w-md px-4 py-3 flex items-center  gap-2 rounded-full'>
+    function signoutHandler() {
+        disatch(logout())
+    }
+    let location = useLocation();
+
+    return (
+        <div className='mx-2 flex justify-between'>
+
+            <div className='bg-gray-700 w-full max-w-md px-4 py-3 flex items-center gap-2 rounded-full'>
                 <span className='text-2xl text-gray-300'>
                     <BiSearch />
                 </span>
-                <input type="search" name="" id="" className='text-lg text-gray-400 bg-transparent items-center focus:border-none outline-none active:border-none w-full ' placeholder='Search...' />
+                <input type="search" name="" id="" className='text-lg text-gray-400 bg-transparent items-center focus:border-none outline-none active:border-none w-full' placeholder='Search...' />
             </div>
-            
 
-            <div className='flex gap-4'>
-                <div className=' bg-gray-700 p-4 flex items-center rounded-full w-min'>
+            <div className='flex gap-4 sm:gap-2 items-center'>
+                <div className='bg-gray-700 p-2 md:p-4 flex items-center rounded-full'>
                     <span className='text-2xl text-gray-300'>
-
                         <IoMdNotificationsOutline />
                     </span>
-
                 </div>
-                <div className=' bg-gray-700 p-4 flex items-center rounded-full w-min'>
+                <div className='bg-gray-700 p-2 md:p-4 flex items-center rounded-full'>
                     <span className='text-2xl text-gray-300'>
-
                         <BiMessageAltMinus />
                     </span>
-
                 </div>
-                <div className=' h-full   border-gray-300 border-2' />
-                <div className="login w-40 h-full bg-slate-500 "></div>
+                <div className='h-full border-gray-300 border-2 hidden md:block'></div>
+                <div className="login hidden sm:flex items-center group relative">
+                    {user.authenticated ? (
+                        <div className="group relative">
+                            <div className="flex items-center gap-2">
+                                <img className="w-8 h-8 rounded-full md:hidden" src={user.photoURL ?? ""} alt="profile" />
+                                <div className="md:flex items-center gap-2 hidden">
+                                    <img className="w-8 h-8 rounded-full" src={user.photoURL ?? ""} alt="profile" />
+                                    <div className="">
+                                        <p className="text-white text-sm">{user.displayName}</p>
+                                        <p className="text-gray-200 text-xs">{user.email}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="group-hover:block absolute bg-white p-2 rounded-md shadow-md top-fullt hidden w-full sm:w-52  container right-0 py-3">
+                                <ul>
+                                    <li className="py-1 rounded-sm hover:bg-gray-700   hover:cursor-pointer">
+                                        <Link to={'./create-room'} className="block text-gray-500 hover:text-white font-boldcursor-pointer px-1">Upload Room</Link>
+                                    </li>
+
+
+                                    <li className="py-1 rounded-sm hover:bg-gray-700 hover:cursor-pointer   ">
+                                        <Link to={'./profile'} className="block  text-gray-500 hover:text-white font-boldcursor-pointer px-1">Profile</Link>
+                                    </li>
+                                    <li onClick={signoutHandler} className="py-1  rounded-sm hover:bg-gray-700  hover:cursor-pointer ">
+                                        <a className="block  text-gray-500 hover:text-white font-boldcursor-pointer px-1">Signout</a>
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    ) : (
+                        <button className="flex items-center gap-2 bg-slate-500 px-4 py-2 rounded-full text-white">
+                            <Link to={'/authenticate'} state={{ next: location.pathname }}>
+                                Login
+                            </Link>
+                        </button>
+                    )}
+                </div>
+
             </div>
         </div>
-    )
+    );
 }
 
-export default RoomieNavbar
+export default RoomieNavbar;

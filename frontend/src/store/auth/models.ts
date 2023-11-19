@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from "firebase/auth";
 
 export interface AuthState {
     authenticated: boolean,
@@ -6,4 +7,5 @@ export interface AuthState {
     email?: string | null;
     photoURL?: string | null;
     token?: string | null
+    googleProvider :GoogleAuthProvider
 }

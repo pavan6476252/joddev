@@ -6,7 +6,8 @@ import { AuthState } from './models';
 
 
 const initialState: AuthState | null = {
-    authenticated: false
+    authenticated: false,
+    googleProvider: new GoogleAuthProvider()
 };
 
 const authSlice = createSlice({
@@ -32,8 +33,8 @@ const authSlice = createSlice({
             state.uid = null
             state.email = null
         },
-        signInWithGoogle: (state, action) => {
-            signInWithPopup(auth, new GoogleAuthProvider())
+        signInWithGoogle: (state) => {
+            signInWithPopup(auth, state.googleProvider)
                 .then((result) => {
 
                     const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -42,7 +43,7 @@ const authSlice = createSlice({
                     console.log("token ", token);
                     const user = result.user;
                     if (user) {
-              
+
 
                         console.log('user' + user);
                     }
@@ -53,13 +54,17 @@ const authSlice = createSlice({
                     console.log('error while login')
                 });
         },
-        logout: () => {
-            signOut(auth).then(() => {
-                alert('Logged Out Successfully');
-            }).catch((error) => {
-                alert(error);
-            });
-        }
+        logout: (state) => {
+            return {
+              ...state,
+              authenticated: false,
+              displayName: null,
+              photoURL: null,
+              token: null,
+              uid: null,
+              email: null,
+            };
+          }
 
     }
 

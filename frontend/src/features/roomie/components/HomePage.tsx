@@ -3,14 +3,13 @@ import RoomieNavbar from '../utils/custom/RoomieNavbar'
 import WelcomMessage from './home/WelcomMessage'
 import CategoryTagsWraper from './home/CategoryTagsWraper'
 import GridViewWraper from './home/GridViewWraper'
-import RoomCard from '../utils/custom/RoomCard'
+import RoomCard from './room/widgets/RoomCard'
 
 function RoomieHomePage() {
-  const cards = [1, 1, 1, 1, 1, 1].map((e) => {
-    return <RoomCard />
-  })
+
+  
   return (
-    <div className='bg-gray-600 pb-5 '>
+    <div className='bg-gray-900 pb-5 '>
       <div className="container mx-auto">
 
         <div className="py-5">
@@ -19,7 +18,7 @@ function RoomieHomePage() {
 
         <WelcomMessage />
         <CategoryTagsWraper />
-        <GridViewWraper children={cards} />
+        <GridViewWraper children={[]} />
       </div>
     </div>
 

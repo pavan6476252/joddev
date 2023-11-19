@@ -3,3 +3,6 @@ backend/node_modules
 frontend/node_modules
 backend/src/config/serviceAccount
 frontend/src/config/firebase_config.ts
+backend/src/config/serviceAccount.json
+backend/src/config/mongodb_config.js
+backend/uploads/ 

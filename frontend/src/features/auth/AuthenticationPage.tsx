@@ -11,7 +11,7 @@ const Authentication: FC = () => {
     const location = useLocation();
 
     const handleGoogleSignIn = async () => {
-        dispatch(signInWithGoogle);
+        dispatch(signInWithGoogle());
     };
 
     useEffect(() => {
