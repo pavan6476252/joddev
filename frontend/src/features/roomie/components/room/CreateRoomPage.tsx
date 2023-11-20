@@ -17,6 +17,8 @@ export interface RoomData {
   availability: boolean;
 }
 
+
+
 function CreateRoomScreen() {
   const dispatch = useDispatch<AppDispatch>();
   const roomStatus = useAppSelector(state => state.room.status);

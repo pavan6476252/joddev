@@ -1,5 +1,5 @@
 import React from 'react'
-import { Room } from '../../../../../store/room/roomSlice';
+import {Room  } from '../../../../../store/room/roomSlice';
 interface RoomCardProps {
   data: Room
 }
@@ -14,11 +14,11 @@ const RoomCard: React.FC<RoomCardProps> = ({data}:RoomCardProps) => {
   const descriptionStyles = 'text-gray-300';
   return (
     <div className={cardStyles}>
-      <img src="" alt="image" className={imageStyles} />
+      <img src={data.images[0]} alt="image" className={imageStyles} />
 
       <div className="flex justify-between my-2">
         <p>
-          <span className={priceStyles}>${data.location}</span>
+          <span className={priceStyles}>${data.title}</span>
           <span className={ratingStyles}>/night</span>
         </p>
 

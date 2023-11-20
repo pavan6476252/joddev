@@ -44,7 +44,7 @@ const authSlice = createSlice({
                     const user = result.user;
                     if (user) {
 
-
+                        state.authenticated = true
                         console.log('user' + user);
                     }
                 })

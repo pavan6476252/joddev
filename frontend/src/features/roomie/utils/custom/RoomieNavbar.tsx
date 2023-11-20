@@ -1,26 +1,52 @@
 import { BiMessageAltMinus, BiSearch } from 'react-icons/bi';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams, } from 'react-router-dom';
 import { logout } from '../../../../store/auth/authSlice';
+import { useRef, useEffect, useState } from 'react'
 
 function RoomieNavbar() {
     const user = useAppSelector((state) => state.auth);
     const disatch = useAppDispatch()
+    const navigation = useNavigate()
 
     function signoutHandler() {
         disatch(logout())
-    }
+    } 
+    const [getInputValue, setInputValue] = useState('');
     let location = useLocation();
+ 
+    let [searchParams, setSearchParams] = useSearchParams();
+ 
+    function handleKeyPress(e: string) {
+        if (e === 'Enter') {
+            if (!location.pathname.includes('search')) {
+                navigation({
+                    pathname: './search',
+                });
+            }
+
+            setSearchParams({ q: getInputValue, category: searchParams.get('category') ?? '' })
+        }
+    }
 
     return (
-        <div className='mx-2 flex justify-between'>
+        <div className=' pt-3 mx-2 flex justify-between gap-2'>
 
             <div className='bg-gray-700 w-full max-w-md px-4 py-3 flex items-center gap-2 rounded-full'>
                 <span className='text-2xl text-gray-300'>
                     <BiSearch />
                 </span>
-                <input type="search" name="" id="" className='text-lg text-gray-400 bg-transparent items-center focus:border-none outline-none active:border-none w-full' placeholder='Search...' />
+                <input
+
+                    onChange={(e) => {
+                        setInputValue(
+                            e.currentTarget.value
+                        )
+                    }}
+                    type="search" name="" id="" className='text-lg text-gray-400 bg-transparent items-center focus:border-none outline-none active:border-none w-full' onKeyUpCapture={(e) => handleKeyPress(e.key)}
+
+                    placeholder='Search name , location , description' />
             </div>
 
             <div className='flex gap-4 sm:gap-2 items-center'>

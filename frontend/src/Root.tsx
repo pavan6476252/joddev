@@ -30,6 +30,8 @@ import { AuthState } from './store/auth/models';
 import RoomieProfilePage from './features/roomie/components/profile/RoomieProfilePage';
 import CreateRoom from './features/roomie/components/room/CreateRoomPage';
 import CreateRoomPage from './features/roomie/components/room/CreateRoomPage';
+import RoomieSearchPage from './features/roomie/components/search/RoomieSearchPage';
+import DevScreen from './features/dev/components/DevScreen';
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" >
     <Route index element={<App />} />
@@ -56,7 +58,12 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route index element={<RoomieHomePage />} />
       <Route path='profile' element={<RoomieProfilePage />} />
       <Route path='create-room' element={<CreateRoomPage />} />
+      <Route path='search' element={<RoomieSearchPage />} />
 
+    </Route>
+
+    <Route path='dev'>
+      <Route index element={<DevScreen />} />
     </Route>
 
   </Route >

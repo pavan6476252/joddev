@@ -14,15 +14,17 @@ const Authentication: FC = () => {
         dispatch(signInWithGoogle());
     };
 
+    console.log(location.state?.next);
+
     useEffect(() => {
         if (atuStatte) {
             alert("You are authenticated. Redirecting...");
             setTimeout(() => {
 
                 navigate(location.state?.next || '/');
-            }, 5000)
+            }, 2000)
         }
-    }, [atuStatte, location, navigate]);
+    }, [atuStatte]);
 
     return (
         <section className="bg-gray-50 dark:bg-gray-900 h-screen flex items-center">

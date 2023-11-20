@@ -1,10 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+
+interface Location {
+  type: string;
+  coordinates: [number, number];
+}
+
 export interface Room {
+  location: Location;
   _id: string;
   title: string;
   description: string;
-  location: string[];
   price: number;
   images: string[];
   amenities: string[];
@@ -15,17 +21,35 @@ export interface Room {
   __v: number;
 }
 
+interface RoomList {
+  rooms: Room[];
+  count: number;
+  currentPage: number;
+  totalPages: number;
+}
+
+// // Example usage:
+// const sampleData: RoomList = {
+//   rooms: [
+//     // ... room objects
+//   ],
+//   count: 10,
+//   currentPage: 1,
+//   totalPages: 2,
+// };
+
+ 
 
 interface RoomState {
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
-  rooms: Room[]
+  res: RoomList | null
 }
 
 const initialState: RoomState = {
   status: 'idle',
   error: null,
-  rooms: []
+  res: null
 };
 
 
@@ -47,13 +71,13 @@ export const getRoomAsync = createAsyncThunk('room/getRooms', async () => {
     method: 'GET',
   });
   const data = await response.json();
-  console.log('[GET] rooms :', response);
+  // console.log('[GET] rooms :', data);
   return data;
 });
 
 
 export const roomSlice = createSlice({
-  name: 'room', // This value must be unique
+  name: 'room',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -72,8 +96,8 @@ export const roomSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(getRoomAsync.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.rooms = action.payload.rooms;
+        state.status = 'succeeded'; 
+        state.res = action.payload;
       })
       .addCase(getRoomAsync.rejected, (state, action) => {
         state.status = 'failed';
@@ -90,4 +114,4 @@ export default roomSlice.reducer;
 export const selectRoomStatus = (state: RootState) => state.room.status;
 export const selectRoomError = (state: RootState) => state.room.error;
 
-export const selectRooms = (state: RootState) => state.room.rooms;
+export const selectRooms = (state: RootState) => state.room.res;

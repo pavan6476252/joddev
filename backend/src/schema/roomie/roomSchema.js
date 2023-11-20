@@ -1,13 +1,23 @@
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 
 
 
 const roomSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  location: { type: [String], required: true },
+  location: {
+    type: {
+      type: String,
+      enum: ['Point'],
+      required: true,
+    },
+    coordinates: {
+      type: [Number],
+      required: true,
+    },
+  },
   price: { type: Number, required: true },
-  images: [String], 
+  images: [String],
   amenities: [String],
   availability: { type: Boolean, default: true },
   mid: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
@@ -19,4 +29,3 @@ const roomSchema = new mongoose.Schema({
 const Room = mongoose.model('Room', roomSchema);
 
 module.exports = Room;
-  
